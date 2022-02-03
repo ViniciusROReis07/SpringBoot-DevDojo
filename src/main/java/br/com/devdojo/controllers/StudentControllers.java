@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.devdojo.model.Student;
+import br.com.devdojo.error.CumstomErrorType;
 import br.com.devdojo.util.DateUtil;
 
 import java.time.LocalDateTime;
@@ -43,7 +44,8 @@ public class StudentControllers {
             return new ResponseEntity<>(studentFind, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>("Não foi possivel localizar estudante", HttpStatus.NOT_FOUND);
+        // return new ResponseEntity<>( new Cum, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new CumstomErrorType("Student not fount"),HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping("/register")
