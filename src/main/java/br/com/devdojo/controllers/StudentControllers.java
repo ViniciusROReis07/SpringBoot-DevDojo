@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,14 +31,14 @@ public class StudentControllers {
     private DateUtil dateUtil;
     private List<Student> students = new ArrayList<>();
 
-    @RequestMapping("/list")
+    @GetMapping("list")
     public ResponseEntity<?> listAll() {
         // System.out.println("Date now
         // "+dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return new ResponseEntity<>(this.students, HttpStatus.OK);
     }
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable("id") int id) {
         Optional<Student> studentFind = students.stream().filter(student -> student.getId() == id).findFirst();
 
@@ -44,11 +46,11 @@ public class StudentControllers {
             return new ResponseEntity<>(studentFind, HttpStatus.OK);
         }
 
-        // return new ResponseEntity<>( new Cum, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(new CumstomErrorType("Student not fount"),HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping("/register")
+
+    @PostMapping("/register")
     public ResponseEntity<?> cadastrar(@RequestBody Student student) {
         this.students.add(student);
         return new ResponseEntity<>(student, HttpStatus.OK);
