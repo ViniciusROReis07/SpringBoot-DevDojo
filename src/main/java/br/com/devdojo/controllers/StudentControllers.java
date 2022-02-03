@@ -31,7 +31,7 @@ public class StudentControllers {
     private DateUtil dateUtil;
     private List<Student> students = new ArrayList<>();
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResponseEntity<?> listAll() {
         // System.out.println("Date now
         // "+dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
