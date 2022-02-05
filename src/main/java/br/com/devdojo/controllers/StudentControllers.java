@@ -50,7 +50,7 @@ public class StudentControllers {
     }
 
 
-    @PostMapping("/register")
+    @PostMapping("/")
     public ResponseEntity<?> cadastrar(@RequestBody Student student) {
         this.students.add(student);
         return new ResponseEntity<>(student, HttpStatus.OK);
