@@ -66,10 +66,10 @@ public class StudentControllers {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody Student studentCurrent){
-        this.students.removeIf(student -> student.getId() == id);
-        this.students.add(studentCurrent);
-        return new ResponseEntity<>(studentCurrent,HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable int id, @RequestBody Student student){
+        this.students.removeIf(studentCurrent -> studentCurrent.getId() == id);
+        this.students.add(student);
+        return new ResponseEntity<>(student,HttpStatus.OK);
     }
 
 }
